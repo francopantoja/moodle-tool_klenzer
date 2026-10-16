@@ -86,7 +86,7 @@ final class inactive_users_test extends \advanced_testcase {
 
         [$total, $users] = inactive_users::get_users_to_suspend();
         $this->assertSame(1, $total);
-        $this->assertSame([$inactive->id], array_map('intval', array_keys($users)));
+        $this->assertSame([(int) $inactive->id], array_map('intval', array_keys($users)));
     }
 
     /**
@@ -104,7 +104,7 @@ final class inactive_users_test extends \advanced_testcase {
 
         [$total, $users] = inactive_users::get_users_to_delete();
         $this->assertSame(1, $total);
-        $this->assertSame([$neverused->id], array_map('intval', array_keys($users)));
+        $this->assertSame([(int) $neverused->id], array_map('intval', array_keys($users)));
     }
 
     /**
