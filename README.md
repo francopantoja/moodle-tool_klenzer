@@ -1,3 +1,5 @@
+<img src="pix/icon.svg" alt="Klenzer icon" width="96" height="96">
+
 # Klenzer #
 
 Klenzer keeps your Moodle user base clean. It automatically **suspends accounts that are no
