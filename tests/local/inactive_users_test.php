@@ -30,7 +30,6 @@ namespace tool_klenzer\local;
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(inactive_users::class)]
 final class inactive_users_test extends \advanced_testcase {
-
     /**
      * Creates a user and forces the given access and creation times.
      *

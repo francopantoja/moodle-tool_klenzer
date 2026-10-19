@@ -28,7 +28,6 @@ namespace tool_klenzer\local;
  * Sends the summary of affected users to the configured notification recipients.
  */
 class notifier {
-
     /** Line separating the suspended and deleted users in the email body. */
     const SEPARATOR = '---------------------';
 

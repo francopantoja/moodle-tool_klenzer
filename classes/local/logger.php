@@ -28,7 +28,6 @@ namespace tool_klenzer\local;
  * Appends each summary to moodledata/tool_klenzer/klenzerlog.txt.
  */
 class logger {
-
     /** Log file name. */
     const FILENAME = 'klenzerlog.txt';
 

@@ -31,7 +31,6 @@ use tool_klenzer\local\logger;
  * Suspends and deletes the inactive users, then logs and emails the summary.
  */
 class process_inactive_users extends \core\task\scheduled_task {
-
     /**
      * Returns the task name shown in the admin interface.
      *

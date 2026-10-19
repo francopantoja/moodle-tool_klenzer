@@ -28,7 +28,6 @@ namespace tool_klenzer;
  * Hook callbacks for tool_klenzer.
  */
 class hook_callbacks {
-
     /**
      * Shows a site admin a notice linking to the welcome page once, right after the plugin is installed.
      *
@@ -53,8 +52,10 @@ class hook_callbacks {
 
         // Clear the flag so the notice is shown only once.
         unset_config('welcomepending', 'tool_klenzer');
-        $link = \html_writer::link(new \moodle_url('/admin/tool/klenzer/welcome.php'),
-            get_string('welcomenotice_link', 'tool_klenzer'));
+        $link = \html_writer::link(
+            new \moodle_url('/admin/tool/klenzer/welcome.php'),
+            get_string('welcomenotice_link', 'tool_klenzer')
+        );
         \core\notification::info(get_string('welcomenotice', 'tool_klenzer', $link));
     }
 }

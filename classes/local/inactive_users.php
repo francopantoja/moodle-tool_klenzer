@@ -30,7 +30,6 @@ namespace tool_klenzer\local;
  * Read only: this class never modifies the database.
  */
 class inactive_users {
-
     /**
      * Returns the cutoff timestamp for suspension, or null when set to "Never".
      *

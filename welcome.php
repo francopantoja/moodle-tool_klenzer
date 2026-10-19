@@ -35,21 +35,33 @@ $PAGE->set_heading(get_string('pluginname', 'tool_klenzer'));
 echo $OUTPUT->header();
 
 // Plugin branding: icon and credits.
-$icon = html_writer::img($OUTPUT->image_url('icon', 'tool_klenzer'), get_string('pluginname', 'tool_klenzer'),
-    ['width' => 64, 'height' => 64, 'class' => 'me-3']);
+$icon = html_writer::img(
+    $OUTPUT->image_url('icon', 'tool_klenzer'),
+    get_string('pluginname', 'tool_klenzer'),
+    ['width' => 64, 'height' => 64, 'class' => 'me-3']
+);
 $credits = html_writer::link('https://idef21.com', get_string('byidef', 'tool_klenzer'), ['target' => '_blank']);
-echo html_writer::div($icon . $OUTPUT->heading(get_string('welcome', 'tool_klenzer'), 2, 'm-0'),
-    'd-flex align-items-center mb-3');
+echo html_writer::div(
+    $icon . $OUTPUT->heading(get_string('welcome', 'tool_klenzer'), 2, 'm-0'),
+    'd-flex align-items-center mb-3'
+);
 
 echo html_writer::tag('p', get_string('welcome_desc', 'tool_klenzer'));
 echo html_writer::tag('p', $credits);
 
 // Shortcuts to the plugin settings and main page.
 echo html_writer::div(
-    $OUTPUT->single_button(new moodle_url('/admin/settings.php', ['section' => 'tool_klenzer_settings']),
-        get_string('settings', 'tool_klenzer'), 'get', ['type' => 'primary']) .
-    $OUTPUT->single_button(new moodle_url('/admin/tool/klenzer/index.php'),
-        get_string('pluginname', 'tool_klenzer'), 'get'),
+    $OUTPUT->single_button(
+        new moodle_url('/admin/settings.php', ['section' => 'tool_klenzer_settings']),
+        get_string('settings', 'tool_klenzer'),
+        'get',
+        ['type' => 'primary']
+    ) .
+    $OUTPUT->single_button(
+        new moodle_url('/admin/tool/klenzer/index.php'),
+        get_string('pluginname', 'tool_klenzer'),
+        'get'
+    ),
     'd-flex gap-2 mt-4'
 );
 

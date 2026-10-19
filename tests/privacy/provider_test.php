@@ -36,7 +36,6 @@ use core_privacy\local\request\writer;
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(provider::class)]
 final class provider_test extends \core_privacy\tests\provider_testcase {
-
     /** @var \stdClass First user with records. */
     protected $user1;
 
@@ -78,8 +77,10 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
      */
     public function test_get_contexts_for_userid(): void {
         $syscontext = \context_system::instance();
-        $this->assertSame([$syscontext->id],
-            array_map('intval', provider::get_contexts_for_userid($this->user1->id)->get_contextids()));
+        $this->assertSame(
+            [$syscontext->id],
+            array_map('intval', provider::get_contexts_for_userid($this->user1->id)->get_contextids())
+        );
         $this->assertEmpty(provider::get_contexts_for_userid($this->user3->id)->get_contextids());
     }
 
@@ -89,8 +90,10 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
     public function test_get_users_in_context(): void {
         $userlist = new userlist(\context_system::instance(), 'tool_klenzer');
         provider::get_users_in_context($userlist);
-        $this->assertEqualsCanonicalizing([$this->user1->id, $this->user2->id],
-            array_map('intval', $userlist->get_userids()));
+        $this->assertEqualsCanonicalizing(
+            [$this->user1->id, $this->user2->id],
+            array_map('intval', $userlist->get_userids())
+        );
 
         // Other contexts hold no data.
         $userlist = new userlist(\context_user::instance($this->user1->id), 'tool_klenzer');
@@ -144,8 +147,11 @@ final class provider_test extends \core_privacy\tests\provider_testcase {
     public function test_delete_data_for_users(): void {
         global $DB;
 
-        $userlist = new approved_userlist(\context_system::instance(), 'tool_klenzer',
-            [$this->user1->id, $this->user2->id]);
+        $userlist = new approved_userlist(
+            \context_system::instance(),
+            'tool_klenzer',
+            [$this->user1->id, $this->user2->id]
+        );
         provider::delete_data_for_users($userlist);
 
         $this->assertSame(0, $DB->count_records('tool_klenzer'));

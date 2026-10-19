@@ -32,7 +32,6 @@ namespace tool_klenzer\local;
 #[\PHPUnit\Framework\Attributes\CoversClass(notifier::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(logger::class)]
 final class executor_test extends \advanced_testcase {
-
     /** @var \stdClass User to be suspended. */
     protected $inactive;
 

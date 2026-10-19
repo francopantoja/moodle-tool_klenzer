@@ -32,7 +32,6 @@ require_once($CFG->dirroot . '/user/lib.php');
  * Suspends and deletes accounts through the Moodle user API and records each action.
  */
 class executor {
-
     /** State stored for suspended users. */
     const STATE_SUSPENDED = 's';
 
@@ -121,7 +120,7 @@ class executor {
                 $count++;
                 continue;
             }
-            // delete_user() needs the full user record.
+            // The full user record is required by delete_user().
             $fulluser = $DB->get_record('user', ['id' => $user->id]);
             if ($fulluser && delete_user($fulluser)) {
                 self::record($user->id, self::STATE_DELETED);

@@ -125,8 +125,11 @@ function tool_klenzer_render_list(string $heading, ?int $cutoff, int $total, arr
     }
     $html .= html_writer::table($table);
     if ($total > count($users)) {
-        $html .= html_writer::tag('p', get_string('showingxofy', 'tool_klenzer',
-            ['shown' => count($users), 'total' => $total]));
+        $html .= html_writer::tag('p', get_string(
+            'showingxofy',
+            'tool_klenzer',
+            ['shown' => count($users), 'total' => $total]
+        ));
     }
     return $html;
 }
@@ -134,17 +137,27 @@ function tool_klenzer_render_list(string $heading, ?int $cutoff, int $total, arr
 echo $OUTPUT->header();
 
 // Plugin branding: icon and credits.
-$icon = html_writer::img($OUTPUT->image_url('icon', 'tool_klenzer'), get_string('pluginname', 'tool_klenzer'),
-    ['width' => 48, 'height' => 48, 'class' => 'me-2']);
+$icon = html_writer::img(
+    $OUTPUT->image_url('icon', 'tool_klenzer'),
+    get_string('pluginname', 'tool_klenzer'),
+    ['width' => 48, 'height' => 48, 'class' => 'me-2']
+);
 $credits = html_writer::link('https://idef21.com', get_string('byidef', 'tool_klenzer'), ['target' => '_blank']);
 echo html_writer::div($icon . $credits, 'd-flex align-items-center mb-3');
 
 // Actions: view the processed users table and run the process.
 echo html_writer::div(
-    $OUTPUT->single_button(new moodle_url('/admin/tool/klenzer/records.php'),
-        get_string('records', 'tool_klenzer'), 'get') .
-    $OUTPUT->single_button(new moodle_url($baseurl, ['action' => 'confirm']),
-        get_string('execute', 'tool_klenzer'), 'get', ['type' => single_button::BUTTON_DANGER]),
+    $OUTPUT->single_button(
+        new moodle_url('/admin/tool/klenzer/records.php'),
+        get_string('records', 'tool_klenzer'),
+        'get'
+    ) .
+    $OUTPUT->single_button(
+        new moodle_url($baseurl, ['action' => 'confirm']),
+        get_string('execute', 'tool_klenzer'),
+        'get',
+        ['type' => single_button::BUTTON_DANGER]
+    ),
     'd-flex gap-2 mb-3'
 );
 
@@ -152,11 +165,19 @@ echo html_writer::div(
 echo $OUTPUT->notification(get_string('previewonly', 'tool_klenzer'), 'warning', false);
 
 [$total, $users] = inactive_users::get_users_to_suspend(0, $limit);
-echo tool_klenzer_render_list(get_string('userstosuspend', 'tool_klenzer'),
-    inactive_users::get_suspend_cutoff(), $total, $users);
+echo tool_klenzer_render_list(
+    get_string('userstosuspend', 'tool_klenzer'),
+    inactive_users::get_suspend_cutoff(),
+    $total,
+    $users
+);
 
 [$total, $users] = inactive_users::get_users_to_delete(0, $limit);
-echo tool_klenzer_render_list(get_string('userstodelete', 'tool_klenzer'),
-    inactive_users::get_delete_cutoff(), $total, $users);
+echo tool_klenzer_render_list(
+    get_string('userstodelete', 'tool_klenzer'),
+    inactive_users::get_delete_cutoff(),
+    $total,
+    $users
+);
 
 echo $OUTPUT->footer();
