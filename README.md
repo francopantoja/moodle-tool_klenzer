@@ -73,6 +73,40 @@ you have the corresponding backups available before enabling *Live mode*.
 
       $ php admin/cli/scheduled_task.php --execute='\tool_klenzer\task\process_inactive_users'
 
+## Data storage ##
+
+### Database table: `tool_klenzer` ###
+
+History of the accounts processed by Klenzer. The actual name includes the site table prefix
+(for example `mdl_tool_klenzer`).
+
+| Field | Type | Null | Description |
+|---|---|---|---|
+| `id` | int(10), auto-increment | No | Primary key. |
+| `userid` | int(10) | No | Affected user. Foreign key to `user.id`. |
+| `state` | char(1) | No | Action applied: `s` = suspended, `d` = deleted. Indexed. |
+| `timecreated` | int(10) | No | Unix timestamp of the action. Default `0`. |
+
+The table is created on installation and dropped when the plugin is uninstalled. Its content is
+covered by the Privacy API (export and deletion of user data).
+
+### Plugin settings ###
+
+Stored in the standard `config_plugins` table with `plugin = 'tool_klenzer'`:
+
+| Name | Description |
+|---|---|
+| `suspendyears` | Years without access before suspension (`0` = never). |
+| `deletemonths` | Months since creation before a never-used account is deleted (`0` = never). |
+| `notifyemails` | Comma-separated notification recipients. |
+| `livemode` | `1` = accounts are actually changed, `0` = simulation. |
+| `welcomepending` | Internal flag used to show the welcome notice once after installation. |
+
+### Log file ###
+
+Each summary is appended to `{dataroot}/tool_klenzer/klenzerlog.txt`. The file can be downloaded
+from the settings page.
+
 ## License ##
 
 2026 by IDEF https://idef21.com
